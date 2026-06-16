@@ -1,0 +1,23 @@
+name = "qtc-faucet"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+# QTC node RPC endpoint â€” override in Cloudflare dashboard for production
+QTC_RPC_URL = "http://localhost:8545"
+# Faucet drip amount in nano-QTC (100 QTC = 100 * 10^9 nano-QTC)
+DRIP_AMOUNT = "100000000000"
+# Rate limit: one drip per address per this many seconds (86400 = 24h)
+RATE_LIMIT_SECS = "86400"
+
+# KV namespace for rate limiting (one entry per address, TTL = RATE_LIMIT_SECS)
+# Create with: wrangler kv:namespace create FAUCET_RATE_LIMIT
+# Then replace the id below with the one printed by that command.
+[[kv_namespaces]]
+binding = "FAUCET_RATE_LIMIT"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+# Secrets (set via `wrangler secret put`, never commit these):
+#   FAUCET_SK   â€” Dilithium2 secret key of the faucet wallet (hex, 2560 bytes = 5120 hex chars)
+#   FAUCET_PK   â€” Dilithium2 public key of the faucet wallet (hex, 1312 bytes = 2624 hex chars)
+#   FAUCET_ADDR â€” Faucet wallet address (hex, 32 bytes = "0x" + 64 hex chars)
