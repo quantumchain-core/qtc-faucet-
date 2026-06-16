@@ -1,0 +1,20 @@
+{
+  "name": "qtc-faucet",
+  "version": "0.1.0",
+  "description": "Cloudflare Worker faucet — drips 100 QTC per address per 24h",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "pqc": "^1.0.1",
+    "qtc-client": "github:quantumchain-core/qtc-client"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240412.0",
+    "typescript": "^5.4.0",
+    "wrangler": "^3.50.0"
+  }
+}
